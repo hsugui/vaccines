@@ -1,9 +1,10 @@
 package com.zup.orange.vaccines.controller.dto;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zup.orange.vaccines.model.Vaccination;
 
 public class VaccinationDto {
@@ -11,7 +12,7 @@ public class VaccinationDto {
 	private Long id;
 	private String vaccineName;
 	private String userEmail;
-	private Timestamp vaccinationDate;
+	private LocalDate vaccinationDate;
 	
 	private Long userId;
 
@@ -43,7 +44,8 @@ public class VaccinationDto {
 		return userEmail;
 	}
 
-	public Timestamp getVaccinationDate() {
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	public LocalDate getVaccinationDate() {
 		return vaccinationDate;
 	}
 
@@ -59,7 +61,7 @@ public class VaccinationDto {
 		this.userEmail = userEmail;
 	}
 
-	public void setVaccinationDate(Timestamp vaccinationDate) {
+	public void setVaccinationDate(LocalDate vaccinationDate) {
 		this.vaccinationDate = vaccinationDate;
 	}
 

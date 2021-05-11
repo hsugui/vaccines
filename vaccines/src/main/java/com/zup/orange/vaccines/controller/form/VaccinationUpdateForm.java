@@ -8,9 +8,10 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zup.orange.vaccines.model.Vaccination;
+import com.zup.orange.vaccines.repository.VaccinationRepository;
 
-public class VaccinationForm {
-
+public class VaccinationUpdateForm {
+	
 	@NotEmpty @NotNull
 	private String vaccineName;
 	@Email @NotEmpty @NotNull
@@ -18,15 +19,6 @@ public class VaccinationForm {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate vaccinationDate;
 	
-	private Long userId;
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
 
 	public String getVaccineName() {
 		return vaccineName;
@@ -52,8 +44,14 @@ public class VaccinationForm {
 		this.vaccinationDate = vaccinationDate;
 	}
 
-	public Vaccination convert() {
-		return new Vaccination(vaccineName, userEmail, vaccinationDate, userId);
+	public Vaccination updateVaccination(Long id, VaccinationRepository vaccinationRepository) {
+		Vaccination vaccination = vaccinationRepository.getOne(id);
+		
+		vaccination.setVaccineName(this.vaccineName);
+		vaccination.setUserEmail(this.userEmail);
+		vaccination.setVaccinationDate(this.vaccinationDate);
+		
+		return vaccination;
 	}
 
 }

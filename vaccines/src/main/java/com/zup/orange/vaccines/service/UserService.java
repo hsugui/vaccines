@@ -1,12 +1,19 @@
 package com.zup.orange.vaccines.service;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.zup.orange.vaccines.controller.dto.UserDto;
 import com.zup.orange.vaccines.controller.form.UserForm;
+import com.zup.orange.vaccines.controller.form.UserUpdateForm;
 import com.zup.orange.vaccines.model.User;
 import com.zup.orange.vaccines.repository.UserRepository;
 
@@ -30,4 +37,20 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
+	@Transactional
+	public User updateUser(@PathVariable Long id, @RequestBody @Valid UserUpdateForm form) {
+		Optional<User> userOptional = userRepository.findById(id);
+		if (userOptional.isPresent())	{
+			return form.update(id, userRepository);
+		}
+		throw new IllegalStateException("user with id " + id + " does not exist");
+	}
+
+	public void deleteUser(Long id) {
+		boolean exists = userRepository.existsById(id);
+		if (!exists) {
+			throw new IllegalStateException("user with id " + id + " does not exist");
+		}
+		userRepository.deleteById(id);
+	}
 }

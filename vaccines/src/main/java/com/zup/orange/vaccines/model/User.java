@@ -1,6 +1,6 @@
 package com.zup.orange.vaccines.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,28 +9,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class User {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "name", nullable = false) //columnDefinition = "TEXT")
+	@Column(name = "name", nullable = false, columnDefinition = "TEXT")
 	@Size(max = 50)
 	private String name;
-	@Column(name = "email", nullable = false, unique = true) //columnDefinition = "TEXT")
+	@Column(name = "email", nullable = false, unique = true, columnDefinition = "TEXT")
 	@Size(max = 50)
 	private String email;
-	@Column(name = "cpf", nullable = false, unique = true)
-	@Size(min = 11, max = 14) //columnDefinition = "TEXT")
+	@Column(name = "cpf", nullable = false, unique = true, columnDefinition = "TEXT")
+	@Size(min = 11, max = 14)
 	private String cpf;
 	@Column(name = "birthDate", nullable = false)
-	private Timestamp birthDate;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate birthDate;
 	
 	public User() {
 	}
 
-	public User(String name, String email, String cpf, Timestamp birthDate) {
+	public User(String name, String email, String cpf, LocalDate birthDate) {
 		this.name = name;
 		this.email = email;
 		this.cpf = cpf;
@@ -94,11 +97,11 @@ public class User {
 		this.cpf = cpf;
 	}
 
-	public Timestamp getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Timestamp birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}	
 }

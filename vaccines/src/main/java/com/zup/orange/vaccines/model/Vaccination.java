@@ -1,6 +1,6 @@
 package com.zup.orange.vaccines.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class Vaccination {
 
@@ -16,21 +18,22 @@ public class Vaccination {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "vaccineName", nullable = false) //columnDefinition = "TEXT")
+	@Column(name = "vaccineName", nullable = false, columnDefinition = "TEXT")
 	@Size(max = 15)
 	private String vaccineName;
-	@Column(name = "userEmail", nullable = false, unique = true) //columnDefinition = "TEXT"
+	@Column(name = "userEmail", nullable = false, columnDefinition = "TEXT")
 	@Size(max = 50)
 	private String userEmail;
 	@Column(name = "vaccinationDate", nullable = false)
-	private Timestamp vaccinationDate;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate vaccinationDate;
 	
 	private Long userId;
 
 	public Vaccination() {
 	}
 
-	public Vaccination(String vaccineName, String userEmail, Timestamp vaccinationDate, Long userId) {
+	public Vaccination(String vaccineName, String userEmail, LocalDate vaccinationDate, Long userId) {
 		this.vaccineName = vaccineName;
 		this.userEmail = userEmail;
 		this.vaccinationDate = vaccinationDate;
@@ -94,11 +97,11 @@ public class Vaccination {
 		this.userEmail = userEmail;
 	}
 
-	public Timestamp getVaccinationDate() {
+	public LocalDate getVaccinationDate() {
 		return vaccinationDate;
 	}
 
-	public void setVaccinationDate(Timestamp vaccinationDate) {
+	public void setVaccinationDate(LocalDate vaccinationDate) {
 		this.vaccinationDate = vaccinationDate;
 	}
 

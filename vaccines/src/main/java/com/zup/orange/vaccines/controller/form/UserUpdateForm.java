@@ -10,8 +10,9 @@ import org.hibernate.validator.constraints.br.CPF;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 import com.zup.orange.vaccines.model.User;
+import com.zup.orange.vaccines.repository.UserRepository;
 
-public class UserForm {
+public class UserUpdateForm {
 
 	@NotEmpty @NotNull
 	private String name;
@@ -21,7 +22,7 @@ public class UserForm {
 	private String cpf;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate birthDate;
-
+	
 	public String getName() {
 		return name;
 	}
@@ -54,8 +55,15 @@ public class UserForm {
 		this.birthDate = birthDate;
 	}
 
-	public User convert() {
-		return new User(name, email, cpf, birthDate);
+	public User update(Long id, UserRepository userRepository) {
+		User user = userRepository.getOne(id);
+		
+		user.setName(this.name);
+		user.setEmail(this.email);
+		user.setCpf(this.cpf);
+		user.setBirthDate(this.birthDate);
+		
+		return user;
 	}
 
 }
