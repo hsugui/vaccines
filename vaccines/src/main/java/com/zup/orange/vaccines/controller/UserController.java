@@ -1,18 +1,17 @@
 package com.zup.orange.vaccines.controller;
 
-import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import com.zup.orange.vaccines.controller.dto.UserDto;
 import com.zup.orange.vaccines.controller.form.UserForm;
@@ -31,17 +30,14 @@ public class UserController {
 	}
 	
 	@GetMapping
-	public List<UserDto> list() {
+	public List<UserDto> listUsers() {
 		return userService.getUsers();
 	}
 	
 	@PostMapping
-	public ResponseEntity<UserDto> register(@RequestBody @Valid UserForm userForm, UriComponentsBuilder uriComponentsBuilder) {
-		User user = userForm.convert();
-		userService.addNewUser(userForm);
-		
-		URI uri = uriComponentsBuilder.path("/user").buildAndExpand(user).toUri();
-		return ResponseEntity.created(uri).body(new UserDto(user));
+	@ResponseStatus(HttpStatus.CREATED)
+	public User registerUser(@RequestBody @Valid UserForm userForm) {
+		return userService.addNewUser(userForm);
 	}
 	
 }

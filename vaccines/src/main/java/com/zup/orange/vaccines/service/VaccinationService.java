@@ -25,9 +25,9 @@ public class VaccinationService {
 		return VaccinationDto.convert(vaccinations);
 	}
 
-	public void addNewVax(VaccinationForm vaccinationForm) {
+	public Vaccination addNewVax(VaccinationForm vaccinationForm) {
 		Vaccination vaccination = vaccinationForm.convert();
-		vaccinationRepository.save(vaccination);
+		return vaccinationRepository.save(vaccination);
 	}
 	
 }

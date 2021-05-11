@@ -13,7 +13,6 @@ public class VaccinationForm {
 	private String vaccineName;
 	@Email @NotEmpty
 	private String userEmail;
-	@NotEmpty
 	private Timestamp vaccinationDate;
 	
 	private Long userId;
