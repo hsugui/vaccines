@@ -2,6 +2,7 @@ package com.zup.orange.vaccines.vaximmunization;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,11 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.zup.orange.vaccines.user.User;
+import com.zup.orange.vaccines.vaccine.Vaccine;
 
 @Entity
 public class VaxImmunization {
@@ -30,54 +33,39 @@ public class VaxImmunization {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate vaccinationDate;
 	
-//	@Column(name = "userId", nullable = false)
-//	private Long userId;
-	
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	private User user;
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "user_id")
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//	private User user;
+    
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "vaccine_id")
+    private Vaccine vaccine;
 
 	public VaxImmunization() {
 	}
 	
-	public VaxImmunization(@Size(max = 20) String vaccineName, LocalDate vaccinationDate, User user) {
+	public VaxImmunization(@Size(max = 15) String vaccineName, LocalDate vaccinationDate, User user, Vaccine vaccine) {
 		this.vaccineName = vaccineName;
 		this.vaccinationDate = vaccinationDate;
-		this.user = user;
+//		this.user = user;
+		this.vaccine = vaccine;
+	}
+	
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
+
+	public Vaccine getVaccine() {
+		return vaccine;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		VaxImmunization other = (VaxImmunization) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+	public void setVaccine(Vaccine vaccine) {
+		this.vaccine = vaccine;
 	}
 
 	public Long getId() {
@@ -104,11 +92,28 @@ public class VaxImmunization {
 		this.vaccinationDate = vaccinationDate;
 	}
 
-//	public Long getUserId() {
-//		return userId;
-//	}
-//
-//	public void setUserId(Long userId) {
-//		this.userId = userId;
-//	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VaxImmunization other = (VaxImmunization) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
 }

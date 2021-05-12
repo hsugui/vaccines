@@ -17,10 +17,10 @@ import com.zup.orange.vaccines.user.User;
 import com.zup.orange.vaccines.user.UserDto;
 import com.zup.orange.vaccines.user.UserRepository;
 import com.zup.orange.vaccines.user.UserService;
-import com.zup.orange.vaccines.vaccination.Vaccination;
-import com.zup.orange.vaccines.vaccination.VaccinationForm;
-import com.zup.orange.vaccines.vaccination.VaccinationRepository;
-import com.zup.orange.vaccines.vaccination.VaccinationService;
+import com.zup.orange.vaccines.vaccine.Vaccine;
+import com.zup.orange.vaccines.vaccine.VaccineForm;
+import com.zup.orange.vaccines.vaccine.VaccineRepository;
+import com.zup.orange.vaccines.vaccine.VaccineService;
 
 @RestController
 @RequestMapping("/user-vaccination")
@@ -35,7 +35,7 @@ public class VaxImmunizationController {
 	
 	
 	private UserService userService;
-	private VaccinationService vaccinationService;
+	private VaccineService vaccineService;
 	private VaxImmunizationService vaxImmunizationService;
 	
 //	@Autowired

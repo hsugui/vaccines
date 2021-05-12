@@ -8,7 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zup.orange.vaccines.vaccination.Vaccination;
+import com.zup.orange.vaccines.vaccine.Vaccine;
 
 @Service
 public class VaxImmunizationService {
@@ -34,7 +34,6 @@ public class VaxImmunizationService {
 		return VaxImmunizationDto.convert(vaxImmunizations);
 	}
 	
-	@Transactional
 	public VaxImmunization addNewVaxImmunization(VaxImmunizationForm vaxImmunizationForm) {
 		VaxImmunization vaxImmunization = vaxImmunizationForm.convert();
 		return vaxImmunizationRepository.save(vaxImmunization);

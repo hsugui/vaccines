@@ -35,17 +35,17 @@ public class User {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate birthDate;
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<VaxImmunization> vaxImmunizations = new ArrayList<>();
-
-	public List<VaxImmunization> getVaxImmunizations() {
-		return vaxImmunizations;
-	}
-
-	public void setVaxImmunizations(List<VaxImmunization> vaxImmunizations) {
-		this.vaxImmunizations = vaxImmunizations;
-		for (VaxImmunization v : vaxImmunizations) v.setUser(this);
-	}
+//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//	private List<VaxImmunization> vaxImmunizations = new ArrayList<>();
+//
+//	public List<VaxImmunization> getVaxImmunizations() {
+//		return vaxImmunizations;
+//	}
+//
+//	public void setVaxImmunizations(List<VaxImmunization> vaxImmunizations) {
+//		this.vaxImmunizations = vaxImmunizations;
+//		for (VaxImmunization v : vaxImmunizations) v.setUser(this);
+//	}
 
 	public User() {
 	}
@@ -55,7 +55,7 @@ public class User {
 		this.email = email;
 		this.cpf = cpf;
 		this.birthDate = birthDate;
-		this.vaxImmunizations = vaxImmunizations;
+//		this.vaxImmunizations = vaxImmunizations;
 	}
 
 	@Override

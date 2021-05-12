@@ -1,18 +1,17 @@
-package com.zup.orange.vaccines.vaccination;
-
-import java.time.LocalDate;
+package com.zup.orange.vaccines.vaccine;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zup.orange.vaccines.vaximmunization.VaxImmunization;
 
 @Entity
-public class Vaccination {
+public class Vaccine {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,20 +20,15 @@ public class Vaccination {
 	@Column(name = "vaccineName", nullable = false, columnDefinition = "TEXT")
 	@Size(max = 15)
 	private String vaccineName;
-	@Column(name = "userEmail", nullable = false, columnDefinition = "TEXT")
-	@Size(max = 50)
-	private String userEmail;
-	@Column(name = "vaccinationDate", nullable = false)
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate vaccinationDate;
+	
+	@OneToOne(mappedBy = "vaccine")
+	private VaxImmunization vaxImmunization;
 
-	public Vaccination() {
+	public Vaccine() {
 	}
 
-	public Vaccination(String vaccineName, String userEmail, LocalDate vaccinationDate) {
+	public Vaccine(String vaccineName) {
 		this.vaccineName = vaccineName;
-		this.userEmail = userEmail;
-		this.vaccinationDate = vaccinationDate;
 	}
 
 	@Override
@@ -53,7 +47,7 @@ public class Vaccination {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Vaccination other = (Vaccination) obj;
+		Vaccine other = (Vaccine) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -76,22 +70,6 @@ public class Vaccination {
 
 	public void setVaccineName(String vaccineName) {
 		this.vaccineName = vaccineName;
-	}
-
-	public String getUserEmail() {
-		return userEmail;
-	}
-
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
-	}
-
-	public LocalDate getVaccinationDate() {
-		return vaccinationDate;
-	}
-
-	public void setVaccinationDate(LocalDate vaccinationDate) {
-		this.vaccinationDate = vaccinationDate;
 	}
 
 }

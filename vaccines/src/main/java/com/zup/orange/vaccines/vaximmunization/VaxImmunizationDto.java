@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zup.orange.vaccines.user.User;
+import com.zup.orange.vaccines.vaccine.Vaccine;
 
 public class VaxImmunizationDto {
 	
@@ -13,14 +14,18 @@ public class VaxImmunizationDto {
 	private String vaccineName;
 	private LocalDate vaccinationDate;
 	private User user;
-//	private Long userId;
+	private Vaccine vaccine;
 	
 	public VaxImmunizationDto(VaxImmunization vaxImmunization) {
 		this.id = vaxImmunization.getId();
 		this.vaccineName = vaxImmunization.getVaccineName();
 		this.vaccinationDate = vaxImmunization.getVaccinationDate();
-//		this.userId = vaxImmunization.getUserId();
-		this.user = vaxImmunization.getUser();
+//		this.user = vaxImmunization.getUser();
+		this.vaccine = vaxImmunization.getVaccine();
+	}
+	
+	public static List<VaxImmunizationDto> convert(List<VaxImmunization> vaxImmunizations) {
+		return vaxImmunizations.stream().map(VaxImmunizationDto::new).collect(Collectors.toList());
 	}
 	
 	public Long getId() {
@@ -48,24 +53,20 @@ public class VaxImmunizationDto {
 		this.vaccinationDate = vaccinationDate;
 	}
 
-//	public Long getUserId() {
-//		return userId;
-//	}
-//
-//	public void setUserId(Long userId) {
-//		this.userId = userId;
-//	}
-
-	public static List<VaxImmunizationDto> convert(List<VaxImmunization> vaxImmunizations) {
-		return vaxImmunizations.stream().map(VaxImmunizationDto::new).collect(Collectors.toList());
-	}
-
 	public User getUser() {
 		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Vaccine getVaccine() {
+		return vaccine;
+	}
+
+	public void setVaccine(Vaccine vaccine) {
+		this.vaccine = vaccine;
 	}
 
 }
