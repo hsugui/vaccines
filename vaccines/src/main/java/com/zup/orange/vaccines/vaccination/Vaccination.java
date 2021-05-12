@@ -1,15 +1,21 @@
-package com.zup.orange.vaccines.model;
+package com.zup.orange.vaccines.vaccination;
 
 import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.zup.orange.vaccines.user.User;
 
 @Entity
 public class Vaccination {
@@ -28,16 +34,18 @@ public class Vaccination {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate vaccinationDate;
 	
-	private Long userId;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false) //LAZY for better performance
+	@JoinColumn(name = "user_id")
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private User user;
 
 	public Vaccination() {
 	}
 
-	public Vaccination(String vaccineName, String userEmail, LocalDate vaccinationDate, Long userId) {
+	public Vaccination(String vaccineName, String userEmail, LocalDate vaccinationDate) {
 		this.vaccineName = vaccineName;
 		this.userEmail = userEmail;
 		this.vaccinationDate = vaccinationDate;
-		this.userId = userId;
 	}
 
 	@Override
@@ -63,14 +71,6 @@ public class Vaccination {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
 	}
 
 	public Long getId() {
@@ -103,6 +103,14 @@ public class Vaccination {
 
 	public void setVaccinationDate(LocalDate vaccinationDate) {
 		this.vaccinationDate = vaccinationDate;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

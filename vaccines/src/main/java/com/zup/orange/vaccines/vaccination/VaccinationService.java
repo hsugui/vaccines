@@ -1,21 +1,12 @@
-package com.zup.orange.vaccines.service;
+package com.zup.orange.vaccines.vaccination;
 
 import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import com.zup.orange.vaccines.controller.dto.VaccinationDto;
-import com.zup.orange.vaccines.controller.form.VaccinationForm;
-import com.zup.orange.vaccines.controller.form.VaccinationUpdateForm;
-import com.zup.orange.vaccines.model.Vaccination;
-import com.zup.orange.vaccines.repository.VaccinationRepository;
 
 @Service
 public class VaccinationService {
@@ -32,13 +23,14 @@ public class VaccinationService {
 		return VaccinationDto.convert(vaccinations);
 	}
 
+	@Transactional
 	public Vaccination addNewVax(VaccinationForm vaccinationForm) {
 		Vaccination vaccination = vaccinationForm.convert();
 		return vaccinationRepository.save(vaccination);
 	}
 	
 	@Transactional
-	public Vaccination updateVaccination(@PathVariable Long id, @RequestBody @Valid VaccinationUpdateForm form) {
+	public Vaccination updateVaccination(Long id, VaccinationUpdateForm form) {
 		Optional<Vaccination> vaccinationOptional = vaccinationRepository.findById(id);
 		if (vaccinationOptional.isPresent())	{
 			return form.updateVaccination(id, vaccinationRepository);

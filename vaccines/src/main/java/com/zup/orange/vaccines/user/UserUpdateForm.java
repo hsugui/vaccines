@@ -1,4 +1,4 @@
-package com.zup.orange.vaccines.controller.form;
+package com.zup.orange.vaccines.user;
 
 import java.time.LocalDate;
 
@@ -9,8 +9,6 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
-import com.zup.orange.vaccines.model.User;
-import com.zup.orange.vaccines.repository.UserRepository;
 
 public class UserUpdateForm {
 

@@ -1,6 +1,7 @@
-package com.zup.orange.vaccines.controller.form;
+package com.zup.orange.vaccines.user;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -9,7 +10,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
-import com.zup.orange.vaccines.model.User;
+import com.zup.orange.vaccines.vaccination.Vaccination;
 
 public class UserForm {
 
@@ -21,6 +22,8 @@ public class UserForm {
 	private String cpf;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate birthDate;
+	
+	private Set<Vaccination> vaccinations;
 
 	public String getName() {
 		return name;
@@ -55,7 +58,7 @@ public class UserForm {
 	}
 
 	public User convert() {
-		return new User(name, email, cpf, birthDate);
+		return new User(name, email, cpf, birthDate, vaccinations);
 	}
 
 }

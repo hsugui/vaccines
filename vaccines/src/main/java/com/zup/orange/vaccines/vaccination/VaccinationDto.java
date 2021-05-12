@@ -1,11 +1,11 @@
-package com.zup.orange.vaccines.controller.dto;
+package com.zup.orange.vaccines.vaccination;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zup.orange.vaccines.model.Vaccination;
+import com.zup.orange.vaccines.user.User;
 
 public class VaccinationDto {
 
@@ -13,23 +13,22 @@ public class VaccinationDto {
 	private String vaccineName;
 	private String userEmail;
 	private LocalDate vaccinationDate;
-	
-	private Long userId;
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public VaccinationDto(Vaccination vaccination) {
 		this.id = vaccination.getId();
 		this.vaccineName = vaccination.getVaccineName();
 		this.userEmail = vaccination.getUserEmail();
 		this.vaccinationDate = vaccination.getVaccinationDate();
-		this.userId = vaccination.getUserId();
-	}
-	
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
+		this.user = vaccination.getUser();
 	}
 
 	public Long getId() {
