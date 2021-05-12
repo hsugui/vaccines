@@ -1,40 +1,58 @@
-package com.zup.orange.vaccines.vaccination;
+package com.zup.orange.vaccines.vaximmunization;
 
 import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.zup.orange.vaccines.user.User;
 
 @Entity
-public class Vaccination {
+public class VaxImmunization {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
 	@Column(name = "vaccineName", nullable = false, columnDefinition = "TEXT")
-	@Size(max = 15)
+	@Size(max = 20)
 	private String vaccineName;
-	@Column(name = "userEmail", nullable = false, columnDefinition = "TEXT")
-	@Size(max = 50)
-	private String userEmail;
+	
 	@Column(name = "vaccinationDate", nullable = false)
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate vaccinationDate;
+	
+//	@Column(name = "userId", nullable = false)
+//	private Long userId;
+	
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	private User user;
 
-	public Vaccination() {
+	public User getUser() {
+		return user;
 	}
 
-	public Vaccination(String vaccineName, String userEmail, LocalDate vaccinationDate) {
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public VaxImmunization() {
+	}
+	
+	public VaxImmunization(@Size(max = 20) String vaccineName, LocalDate vaccinationDate, User user) {
 		this.vaccineName = vaccineName;
-		this.userEmail = userEmail;
 		this.vaccinationDate = vaccinationDate;
+		this.user = user;
 	}
 
 	@Override
@@ -53,7 +71,7 @@ public class Vaccination {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Vaccination other = (Vaccination) obj;
+		VaxImmunization other = (VaxImmunization) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -78,14 +96,6 @@ public class Vaccination {
 		this.vaccineName = vaccineName;
 	}
 
-	public String getUserEmail() {
-		return userEmail;
-	}
-
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
-	}
-
 	public LocalDate getVaccinationDate() {
 		return vaccinationDate;
 	}
@@ -94,4 +104,11 @@ public class Vaccination {
 		this.vaccinationDate = vaccinationDate;
 	}
 
+//	public Long getUserId() {
+//		return userId;
+//	}
+//
+//	public void setUserId(Long userId) {
+//		this.userId = userId;
+//	}
 }

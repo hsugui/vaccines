@@ -1,8 +1,8 @@
 package com.zup.orange.vaccines.user;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zup.orange.vaccines.vaccination.Vaccination;
+import com.zup.orange.vaccines.vaximmunization.VaxImmunization;
 
 @Entity
 public class User {
@@ -36,17 +36,26 @@ public class User {
 	private LocalDate birthDate;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Set<Vaccination> vaccinations = new HashSet<>();
+	private List<VaxImmunization> vaxImmunizations = new ArrayList<>();
+
+	public List<VaxImmunization> getVaxImmunizations() {
+		return vaxImmunizations;
+	}
+
+	public void setVaxImmunizations(List<VaxImmunization> vaxImmunizations) {
+		this.vaxImmunizations = vaxImmunizations;
+		for (VaxImmunization v : vaxImmunizations) v.setUser(this);
+	}
 
 	public User() {
 	}
 
-	public User(String name, String email, String cpf, LocalDate birthDate, Set<Vaccination> vaccinations) {
+	public User(String name, String email, String cpf, LocalDate birthDate, List<VaxImmunization> vaxImmunizations) {
 		this.name = name;
 		this.email = email;
 		this.cpf = cpf;
 		this.birthDate = birthDate;
-		this.vaccinations = vaccinations;
+		this.vaxImmunizations = vaxImmunizations;
 	}
 
 	@Override
@@ -114,15 +123,4 @@ public class User {
 		this.birthDate = birthDate;
 	}
 	
-	public Set<Vaccination> getVaccinations() {
-		return vaccinations;
-	}
-
-	public void setVaccinations(Set<Vaccination> vaccinations) {
-		this.vaccinations = vaccinations;
-		
-		for (Vaccination v : vaccinations) {
-			v.setUser(this);
-		}
-	}
 }

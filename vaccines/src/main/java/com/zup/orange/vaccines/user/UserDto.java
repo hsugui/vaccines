@@ -2,11 +2,9 @@ package com.zup.orange.vaccines.user;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zup.orange.vaccines.vaccination.Vaccination;
 
 public class UserDto {
 
@@ -15,7 +13,6 @@ public class UserDto {
 	private String email;
 	private String cpf;
 	private LocalDate birthDate;
-	private Set<Vaccination> vaccinations;
 
 	public UserDto(User user) {
 		this.id = user.getId();
@@ -23,15 +20,6 @@ public class UserDto {
 		this.email = user.getEmail();
 		this.cpf = user.getCpf();
 		this.birthDate = user.getBirthDate();
-		this.vaccinations = user.getVaccinations();
-	}
-
-	public Set<Vaccination> getVaccinations() {
-		return vaccinations;
-	}
-
-	public void setVaccinations(Set<Vaccination> vaccinations) {
-		this.vaccinations = vaccinations;
 	}
 
 	public Long getId() {

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zup.orange.vaccines.user.User;
 
 public class VaccinationDto {
 
@@ -13,22 +12,12 @@ public class VaccinationDto {
 	private String vaccineName;
 	private String userEmail;
 	private LocalDate vaccinationDate;
-	private User user;
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	public VaccinationDto(Vaccination vaccination) {
 		this.id = vaccination.getId();
 		this.vaccineName = vaccination.getVaccineName();
 		this.userEmail = vaccination.getUserEmail();
 		this.vaccinationDate = vaccination.getVaccinationDate();
-		this.user = vaccination.getUser();
 	}
 
 	public Long getId() {
