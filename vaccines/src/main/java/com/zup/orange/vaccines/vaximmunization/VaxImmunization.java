@@ -25,9 +25,9 @@ public class VaxImmunization {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "vaccineName", nullable = false, columnDefinition = "TEXT")
-	@Size(max = 20)
-	private String vaccineName;
+//	@Column(name = "vaccineName", nullable = false, unique = true, columnDefinition = "TEXT")
+//	@Size(max = 20)
+//	private String vaccineName;
 	
 	@Column(name = "vaccinationDate", nullable = false)
 	@JsonFormat(pattern = "dd/MM/yyyy")
@@ -36,17 +36,17 @@ public class VaxImmunization {
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 //    @JoinColumn(name = "user_id")
 //    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-//	private User user;
+//	  private User user;
     
     @OneToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "vaccine_id")
+    @JoinColumn(name = "vaccine_name")
     private Vaccine vaccine;
 
 	public VaxImmunization() {
 	}
 	
-	public VaxImmunization(@Size(max = 15) String vaccineName, LocalDate vaccinationDate, User user, Vaccine vaccine) {
-		this.vaccineName = vaccineName;
+	public VaxImmunization(LocalDate vaccinationDate, Vaccine vaccine) { //@Size(max = 15) String vaccineName, 
+//		this.vaccineName = vaccineName;
 		this.vaccinationDate = vaccinationDate;
 //		this.user = user;
 		this.vaccine = vaccine;
@@ -76,13 +76,13 @@ public class VaxImmunization {
 		this.id = id;
 	}
 
-	public String getVaccineName() {
-		return vaccineName;
-	}
-
-	public void setVaccineName(String vaccineName) {
-		this.vaccineName = vaccineName;
-	}
+//	public String getVaccineName() {
+//		return vaccineName;
+//	}
+//
+//	public void setVaccineName(String vaccineName) {
+//		this.vaccineName = vaccineName;
+//	}
 
 	public LocalDate getVaccinationDate() {
 		return vaccinationDate;

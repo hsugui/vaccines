@@ -17,7 +17,7 @@ public class Vaccine {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "vaccineName", nullable = false, columnDefinition = "TEXT")
+	@Column(name = "vaccineName", nullable = false, unique = true, columnDefinition = "TEXT")
 	@Size(max = 15)
 	private String vaccineName;
 	
@@ -27,8 +27,9 @@ public class Vaccine {
 	public Vaccine() {
 	}
 
-	public Vaccine(String vaccineName) {
+	public Vaccine(String vaccineName, VaxImmunization vaxImmunization) {
 		this.vaccineName = vaccineName;
+		this.vaxImmunization = vaxImmunization;
 	}
 
 	@Override
@@ -70,6 +71,14 @@ public class Vaccine {
 
 	public void setVaccineName(String vaccineName) {
 		this.vaccineName = vaccineName;
+	}
+
+	public VaxImmunization getVaxImmunization() {
+		return vaxImmunization;
+	}
+
+	public void setVaxImmunization(VaxImmunization vaxImmunization) {
+		this.vaxImmunization = vaxImmunization;
 	}
 
 }

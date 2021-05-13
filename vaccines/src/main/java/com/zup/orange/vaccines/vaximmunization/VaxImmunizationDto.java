@@ -13,12 +13,12 @@ public class VaxImmunizationDto {
 	private Long id;
 	private String vaccineName;
 	private LocalDate vaccinationDate;
-	private User user;
+//	private User user;
 	private Vaccine vaccine;
 	
 	public VaxImmunizationDto(VaxImmunization vaxImmunization) {
 		this.id = vaxImmunization.getId();
-		this.vaccineName = vaxImmunization.getVaccineName();
+//		this.vaccineName = vaxImmunization.getVaccineName();
 		this.vaccinationDate = vaxImmunization.getVaccinationDate();
 //		this.user = vaxImmunization.getUser();
 		this.vaccine = vaxImmunization.getVaccine();
@@ -53,14 +53,14 @@ public class VaxImmunizationDto {
 		this.vaccinationDate = vaccinationDate;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
+//
 	public Vaccine getVaccine() {
 		return vaccine;
 	}

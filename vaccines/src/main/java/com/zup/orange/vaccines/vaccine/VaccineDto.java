@@ -3,14 +3,18 @@ package com.zup.orange.vaccines.vaccine;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.zup.orange.vaccines.vaximmunization.VaxImmunization;
+
 public class VaccineDto {
 
 	private Long id;
 	private String vaccineName;
+	private VaxImmunization vaxImmunization;
 
 	public VaccineDto(Vaccine vaccine) {
 		this.id = vaccine.getId();
 		this.vaccineName = vaccine.getVaccineName();
+		this.vaxImmunization = vaccine.getVaxImmunization();
 	}
 
 	public Long getId() {
@@ -27,6 +31,14 @@ public class VaccineDto {
 
 	public void setVaccineName(String vaccineName) {
 		this.vaccineName = vaccineName;
+	}
+
+	public VaxImmunization getVaxImmunization() {
+		return vaxImmunization;
+	}
+
+	public void setVaxImmunization(VaxImmunization vaxImmunization) {
+		this.vaxImmunization = vaxImmunization;
 	}
 
 	public static List<VaccineDto> convert(List<Vaccine> vaccines) {
