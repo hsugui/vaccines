@@ -1,4 +1,4 @@
-package com.zup.orange.vaccines.vaximmunization;
+package com.zup.orange.vaccines.controller;
 
 import java.util.List;
 
@@ -13,14 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zup.orange.vaccines.user.User;
-import com.zup.orange.vaccines.user.UserDto;
-import com.zup.orange.vaccines.user.UserRepository;
-import com.zup.orange.vaccines.user.UserService;
-import com.zup.orange.vaccines.vaccine.Vaccine;
-import com.zup.orange.vaccines.vaccine.VaccineForm;
-import com.zup.orange.vaccines.vaccine.VaccineRepository;
-import com.zup.orange.vaccines.vaccine.VaccineService;
+import com.zup.orange.vaccines.controller.dto.UserDto;
+import com.zup.orange.vaccines.controller.dto.VaxImmunizationDto;
+import com.zup.orange.vaccines.controller.form.VaccineForm;
+import com.zup.orange.vaccines.controller.form.VaxImmunizationForm;
+import com.zup.orange.vaccines.model.User;
+import com.zup.orange.vaccines.model.Vaccine;
+import com.zup.orange.vaccines.model.VaxImmunization;
+import com.zup.orange.vaccines.repository.UserRepository;
+import com.zup.orange.vaccines.repository.VaccineRepository;
+import com.zup.orange.vaccines.service.UserService;
+import com.zup.orange.vaccines.service.VaccineService;
+import com.zup.orange.vaccines.service.VaxImmunizationService;
 
 @RestController
 @RequestMapping("/user-vaccination")

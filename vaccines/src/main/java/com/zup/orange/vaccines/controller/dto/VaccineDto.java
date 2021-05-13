@@ -1,9 +1,10 @@
-package com.zup.orange.vaccines.vaccine;
+package com.zup.orange.vaccines.controller.dto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.zup.orange.vaccines.vaximmunization.VaxImmunization;
+import com.zup.orange.vaccines.model.Vaccine;
+import com.zup.orange.vaccines.model.VaxImmunization;
 
 public class VaccineDto {
 

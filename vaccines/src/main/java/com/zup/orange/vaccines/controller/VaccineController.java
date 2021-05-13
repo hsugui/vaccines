@@ -1,4 +1,4 @@
-package com.zup.orange.vaccines.vaccine;
+package com.zup.orange.vaccines.controller;
 
 import java.util.List;
 
@@ -15,6 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.zup.orange.vaccines.controller.dto.VaccineDto;
+import com.zup.orange.vaccines.controller.form.VaccineForm;
+import com.zup.orange.vaccines.controller.form.VaccineUpdateForm;
+import com.zup.orange.vaccines.model.Vaccine;
+import com.zup.orange.vaccines.service.VaccineService;
 
 @RestController
 @RequestMapping("/vaccine")

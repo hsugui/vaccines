@@ -1,4 +1,4 @@
-package com.zup.orange.vaccines.vaximmunization;
+package com.zup.orange.vaccines.model;
 
 import java.time.LocalDate;
 
@@ -12,12 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.zup.orange.vaccines.user.User;
-import com.zup.orange.vaccines.vaccine.Vaccine;
 
 @Entity
 public class VaxImmunization {
@@ -25,18 +22,18 @@ public class VaxImmunization {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-//	@Column(name = "vaccineName", nullable = false, unique = true, columnDefinition = "TEXT")
-//	@Size(max = 20)
-//	private String vaccineName;
-	
 	@Column(name = "vaccinationDate", nullable = false)
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate vaccinationDate;
 	
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "user_id")
+//    @JoinColumn(name = "user_cpf")
 //    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 //	  private User user;
+	
+	@OneToOne(cascade = CascadeType.ALL, optional = false)
+	@JoinColumn(name = "user_cpf")
+	private User user;
     
     @OneToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "vaccine_name")
@@ -45,20 +42,19 @@ public class VaxImmunization {
 	public VaxImmunization() {
 	}
 	
-	public VaxImmunization(LocalDate vaccinationDate, Vaccine vaccine) { //@Size(max = 15) String vaccineName, 
-//		this.vaccineName = vaccineName;
+	public VaxImmunization(LocalDate vaccinationDate, User user, Vaccine vaccine) {
 		this.vaccinationDate = vaccinationDate;
-//		this.user = user;
+		this.user = user;
 		this.vaccine = vaccine;
 	}
 	
-//	public User getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public Vaccine getVaccine() {
 		return vaccine;
@@ -75,14 +71,6 @@ public class VaxImmunization {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-//	public String getVaccineName() {
-//		return vaccineName;
-//	}
-//
-//	public void setVaccineName(String vaccineName) {
-//		this.vaccineName = vaccineName;
-//	}
 
 	public LocalDate getVaccinationDate() {
 		return vaccinationDate;

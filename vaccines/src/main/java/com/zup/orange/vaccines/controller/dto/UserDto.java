@@ -1,10 +1,12 @@
-package com.zup.orange.vaccines.user;
+package com.zup.orange.vaccines.controller.dto;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zup.orange.vaccines.model.User;
+import com.zup.orange.vaccines.model.VaxImmunization;
 
 public class UserDto {
 
@@ -13,6 +15,10 @@ public class UserDto {
 	private String email;
 	private String cpf;
 	private LocalDate birthDate;
+	
+	private VaxImmunization vaxImmunization;
+	
+//	private List<VaxImmunization> vaxImmunization;
 
 	public UserDto(User user) {
 		this.id = user.getId();
@@ -21,6 +27,22 @@ public class UserDto {
 		this.cpf = user.getCpf();
 		this.birthDate = user.getBirthDate();
 	}
+	
+	public VaxImmunization getVaxImmunization() {
+		return vaxImmunization;
+	}
+
+	public void setVaxImmunization(VaxImmunization vaxImmunization) {
+		this.vaxImmunization = vaxImmunization;
+	}
+
+//	public List<VaxImmunization> getVaxImmunization() {
+//		return vaxImmunization;
+//	}
+//
+//	public void setVaxImmunization(List<VaxImmunization> vaxImmunization) {
+//		this.vaxImmunization = vaxImmunization;
+//	}
 
 	public Long getId() {
 		return id;

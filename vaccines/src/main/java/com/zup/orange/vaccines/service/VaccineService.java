@@ -1,4 +1,4 @@
-package com.zup.orange.vaccines.vaccine;
+package com.zup.orange.vaccines.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,6 +7,12 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.zup.orange.vaccines.controller.dto.VaccineDto;
+import com.zup.orange.vaccines.controller.form.VaccineForm;
+import com.zup.orange.vaccines.controller.form.VaccineUpdateForm;
+import com.zup.orange.vaccines.model.Vaccine;
+import com.zup.orange.vaccines.repository.VaccineRepository;
 
 @Service
 public class VaccineService {

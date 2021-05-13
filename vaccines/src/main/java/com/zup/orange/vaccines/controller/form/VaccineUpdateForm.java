@@ -1,7 +1,10 @@
-package com.zup.orange.vaccines.vaccine;
+package com.zup.orange.vaccines.controller.form;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import com.zup.orange.vaccines.model.Vaccine;
+import com.zup.orange.vaccines.repository.VaccineRepository;
 
 public class VaccineUpdateForm {
 	

@@ -1,4 +1,4 @@
-package com.zup.orange.vaccines.vaccine;
+package com.zup.orange.vaccines.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
-import com.zup.orange.vaccines.vaximmunization.VaxImmunization;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Vaccine {
@@ -21,6 +21,7 @@ public class Vaccine {
 	@Size(max = 15)
 	private String vaccineName;
 	
+	@JsonIgnoreProperties("vaccine")
 	@OneToOne(mappedBy = "vaccine")
 	private VaxImmunization vaxImmunization;
 
