@@ -1,12 +1,9 @@
 package com.zup.orange.vaccines.service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import com.zup.orange.vaccines.controller.dto.VaxImmunizationDto;
 import com.zup.orange.vaccines.controller.form.VaxImmunizationForm;
-import com.zup.orange.vaccines.model.User;
-import com.zup.orange.vaccines.model.Vaccine;
 import com.zup.orange.vaccines.model.VaxImmunization;
 
 public interface VaxImmunizationService {

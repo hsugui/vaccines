@@ -1,5 +1,6 @@
 package com.zup.orange.vaccines.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,8 +22,8 @@ public class Vaccine {
 	@Size(max = 15)
 	private String vaccineName;
 	
-	//@JsonIgnoreProperties("vaccine")
-	@OneToOne(mappedBy = "vaccine")
+	@JsonIgnoreProperties("vaccine")
+	@OneToOne(mappedBy = "vaccine", cascade = CascadeType.ALL)
 	private VaxImmunization vaxImmunization;
 
 	public Vaccine() {

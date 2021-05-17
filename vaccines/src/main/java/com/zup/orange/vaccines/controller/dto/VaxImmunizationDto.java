@@ -23,12 +23,6 @@ public class VaxImmunizationDto {
 		this.vaccine = vaxImmunization.getVaccine();
 	}
 	
-//	public VaxImmunizationDto(String userCpf, String vaccineName, LocalDate vaccinationDate) {
-//		userCpf = user.getCpf();
-//		vaccineName = vaccine.getVaccineName();
-//		this.vaccinationDate = vaccinationDate;
-//	}
-	
 	public String getUserCpf() {
 		return user.getCpf();
 	}

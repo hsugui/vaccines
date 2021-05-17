@@ -35,7 +35,7 @@ public class VaxImmunizationForm {
 	}
 
 	public VaxImmunization convert() {
-		return new VaxImmunization(user.getCpf(), vaccine.getVaccineName(), vaccinationDate);
+		return new VaxImmunization(user, vaccine, vaccinationDate);
 	}
 	
 }

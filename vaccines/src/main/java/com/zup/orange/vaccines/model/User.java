@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class User {
@@ -36,6 +37,7 @@ public class User {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate birthDate;
 	
+	@JsonIgnoreProperties("user")
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<VaxImmunization> vaxImmunizations;
 

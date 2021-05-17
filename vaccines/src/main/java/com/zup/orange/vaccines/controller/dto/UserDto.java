@@ -26,16 +26,6 @@ public class UserDto {
 		this.birthDate = user.getBirthDate();
 		this.vaxImmunizations = user.getVaxImmunizations();
 	}
-	
-//	private VaxImmunization vaxImmunization;
-	
-//	public VaxImmunization getVaxImmunization() {
-//		return vaxImmunization;
-//	}
-//
-//	public void setVaxImmunization(VaxImmunization vaxImmunization) {
-//		this.vaxImmunization = vaxImmunization;
-//	}
 
 	public List<VaxImmunization> getVaxImmunization() {
 		return vaxImmunizations;
