@@ -19,39 +19,39 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zup.orange.vaccines.controller.dto.VaccineDto;
 import com.zup.orange.vaccines.controller.form.VaccineForm;
 import com.zup.orange.vaccines.controller.form.VaccineUpdateForm;
+import com.zup.orange.vaccines.implementation.VaccineServiceImpl;
 import com.zup.orange.vaccines.model.Vaccine;
-import com.zup.orange.vaccines.service.VaccineService;
 
 @RestController
 @RequestMapping("/vaccine")
 public class VaccineController {
 
-	private final VaccineService vaccineService;
+	private final VaccineServiceImpl vaccineServiceImpl;
 	
 	@Autowired
-	public VaccineController(VaccineService vaccineService) {
-		this.vaccineService = vaccineService;
+	public VaccineController(VaccineServiceImpl vaccineServiceImpl) {
+		this.vaccineServiceImpl = vaccineServiceImpl;
 	}
 	
 	@GetMapping
 	public List<VaccineDto> listVaccines() {
-		return vaccineService.getVaccines();
+		return vaccineServiceImpl.getVaccines();
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Vaccine registerVaccine(@RequestBody @Valid VaccineForm vaccineForm) {
-		return vaccineService.addNewVax(vaccineForm);
+		return vaccineServiceImpl.addNewVax(vaccineForm);
 	}
 	
 	@PutMapping("/{id}")
 	public Vaccine updateVaccine(@PathVariable Long id, @RequestBody @Valid VaccineUpdateForm vaccineForm) {
-		return vaccineService.updateVaccine(id, vaccineForm);
+		return vaccineServiceImpl.updateVaccine(id, vaccineForm);
 	}
 
 	@DeleteMapping("/{id}")
 	public void deleteVaccine(@PathVariable("id") Long id) {
-		vaccineService.deleteVaccine(id);
+		vaccineServiceImpl.deleteVaccine(id);
 	}
 	
 }

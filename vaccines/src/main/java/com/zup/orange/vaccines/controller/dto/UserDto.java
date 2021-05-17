@@ -16,33 +16,34 @@ public class UserDto {
 	private String cpf;
 	private LocalDate birthDate;
 	
-	private VaxImmunization vaxImmunization;
+	private List<VaxImmunization> vaxImmunizations;
 	
-//	private List<VaxImmunization> vaxImmunization;
-
 	public UserDto(User user) {
 		this.id = user.getId();
 		this.name = user.getName();
 		this.email = user.getEmail();
 		this.cpf = user.getCpf();
 		this.birthDate = user.getBirthDate();
+		this.vaxImmunizations = user.getVaxImmunizations();
 	}
 	
-	public VaxImmunization getVaxImmunization() {
-		return vaxImmunization;
-	}
-
-	public void setVaxImmunization(VaxImmunization vaxImmunization) {
-		this.vaxImmunization = vaxImmunization;
-	}
-
-//	public List<VaxImmunization> getVaxImmunization() {
+//	private VaxImmunization vaxImmunization;
+	
+//	public VaxImmunization getVaxImmunization() {
 //		return vaxImmunization;
 //	}
 //
-//	public void setVaxImmunization(List<VaxImmunization> vaxImmunization) {
+//	public void setVaxImmunization(VaxImmunization vaxImmunization) {
 //		this.vaxImmunization = vaxImmunization;
 //	}
+
+	public List<VaxImmunization> getVaxImmunization() {
+		return vaxImmunizations;
+	}
+
+	public void setVaxImmunization(List<VaxImmunization> vaxImmunizations) {
+		this.vaxImmunizations = vaxImmunizations;
+	}
 
 	public Long getId() {
 		return id;

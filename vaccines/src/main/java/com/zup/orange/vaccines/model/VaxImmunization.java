@@ -26,13 +26,9 @@ public class VaxImmunization {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate vaccinationDate;
 	
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "user_cpf")
-//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-//	  private User user;
-	
-	@OneToOne(cascade = CascadeType.ALL, optional = false)
-	@JoinColumn(name = "user_cpf")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_cpf")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private User user;
     
     @OneToOne(cascade = CascadeType.ALL, optional = false)
@@ -42,12 +38,12 @@ public class VaxImmunization {
 	public VaxImmunization() {
 	}
 	
-	public VaxImmunization(LocalDate vaccinationDate, User user, Vaccine vaccine) {
+	public VaxImmunization(String userCpf, String vaccineName, LocalDate vaccinationDate) {
+		userCpf = this.user.getCpf();
+		vaccineName = this.vaccine.getVaccineName();
 		this.vaccinationDate = vaccinationDate;
-		this.user = user;
-		this.vaccine = vaccine;
 	}
-	
+
 	public User getUser() {
 		return user;
 	}
@@ -72,6 +68,7 @@ public class VaxImmunization {
 		this.id = id;
 	}
 
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	public LocalDate getVaccinationDate() {
 		return vaccinationDate;
 	}

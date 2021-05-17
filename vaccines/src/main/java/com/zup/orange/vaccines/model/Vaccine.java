@@ -21,7 +21,7 @@ public class Vaccine {
 	@Size(max = 15)
 	private String vaccineName;
 	
-	@JsonIgnoreProperties("vaccine")
+	//@JsonIgnoreProperties("vaccine")
 	@OneToOne(mappedBy = "vaccine")
 	private VaxImmunization vaxImmunization;
 

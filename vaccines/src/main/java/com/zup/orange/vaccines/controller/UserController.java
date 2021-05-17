@@ -19,39 +19,39 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zup.orange.vaccines.controller.dto.UserDto;
 import com.zup.orange.vaccines.controller.form.UserForm;
 import com.zup.orange.vaccines.controller.form.UserUpdateForm;
+import com.zup.orange.vaccines.implementation.UserServiceImpl;
 import com.zup.orange.vaccines.model.User;
-import com.zup.orange.vaccines.service.UserService;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 	
-	private final UserService userService;
+	private final UserServiceImpl userServiceImpl;
 
 	@Autowired
-	public UserController(UserService userService) {
-		this.userService = userService;
+	public UserController(UserServiceImpl userServiceImpl) {
+		this.userServiceImpl = userServiceImpl;
 	}
 	
 	@GetMapping
 	public List<UserDto> listUsers() {
-		return userService.getUsers();
+		return userServiceImpl.getUsers();
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public User registerUser(@RequestBody @Valid UserForm userForm) {
-		return userService.addNewUser(userForm);
+		return userServiceImpl.addNewUser(userForm);
 	}
 	
 	@PutMapping("/{id}")
 	public User updateUser(@PathVariable Long id, @RequestBody @Valid UserUpdateForm userForm) {
-		return userService.updateUser(id, userForm);
+		return userServiceImpl.updateUser(id, userForm);
 	}
 
 	@DeleteMapping("/{id}")
 	public void deleteUser(@PathVariable("id") Long id) {
-		userService.deleteUser(id);
+		userServiceImpl.deleteUser(id);
 	}
 	
 }

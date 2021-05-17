@@ -23,8 +23,26 @@ public class VaxImmunizationDto {
 		this.vaccine = vaxImmunization.getVaccine();
 	}
 	
-	public static List<VaxImmunizationDto> convert(List<VaxImmunization> vaxImmunizations) {
-		return vaxImmunizations.stream().map(VaxImmunizationDto::new).collect(Collectors.toList());
+//	public VaxImmunizationDto(String userCpf, String vaccineName, LocalDate vaccinationDate) {
+//		userCpf = user.getCpf();
+//		vaccineName = vaccine.getVaccineName();
+//		this.vaccinationDate = vaccinationDate;
+//	}
+	
+	public String getUserCpf() {
+		return user.getCpf();
+	}
+	
+	public void setUserCpf(String userCpf) {
+		userCpf = user.getCpf();
+	}
+
+	public String getVaccineName() {
+		return vaccine.getVaccineName();
+	}
+
+	public void setVaccineName(String vaccineName) {
+		vaccineName = vaccine.getVaccineName();
 	}
 	
 	public Long getId() {
@@ -58,6 +76,10 @@ public class VaxImmunizationDto {
 
 	public void setVaccine(Vaccine vaccine) {
 		this.vaccine = vaccine;
+	}
+	
+	public static List<VaxImmunizationDto> convert(List<VaxImmunization> vaxImmunizations) {
+		return vaxImmunizations.stream().map(VaxImmunizationDto::new).collect(Collectors.toList());
 	}
 
 }

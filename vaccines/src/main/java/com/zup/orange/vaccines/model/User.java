@@ -1,7 +1,6 @@
 package com.zup.orange.vaccines.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,11 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class User {
@@ -26,32 +23,31 @@ public class User {
 	@Column(name = "name", nullable = true, columnDefinition = "TEXT")
 	@Size(max = 50)
 	private String name;
+	
 	@Column(name = "email", nullable = true, unique = true, columnDefinition = "TEXT")
 	@Size(max = 50)
 	private String email;
+	
 	@Column(name = "cpf", nullable = false, unique = true, columnDefinition = "TEXT")
 	@Size(min = 11, max = 14)
 	private String cpf;
+	
 	@Column(name = "birthDate", nullable = true)
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate birthDate;
 	
-	@JsonIgnoreProperties("user")
-	@OneToOne(mappedBy = "user")
-	private VaxImmunization vaxImmunization;
-	
-//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//	private List<VaxImmunization> vaxImmunizations = new ArrayList<>();
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<VaxImmunization> vaxImmunizations;
 
 	public User() {
 	}
 
-	public User(String name, String email, String cpf, LocalDate birthDate, VaxImmunization vaxImmunization) {
+	public User(String name, String email, String cpf, LocalDate birthDate, List<VaxImmunization> vaxImmunizations) {
 		this.name = name;
 		this.email = email;
 		this.cpf = cpf;
 		this.birthDate = birthDate;
-		this.vaxImmunization = vaxImmunization;
+		this.vaxImmunizations = vaxImmunizations;
 	}
 
 	@Override
@@ -119,20 +115,13 @@ public class User {
 		this.birthDate = birthDate;
 	}
 	
-//	public List<VaxImmunization> getVaxImmunizations() {
-//		return vaxImmunizations;
-//	}
-//
-//	public void setVaxImmunizations(List<VaxImmunization> vaxImmunizations) {
-//		this.vaxImmunizations = vaxImmunizations;
-//		for (VaxImmunization v : vaxImmunizations) v.setUser(this);
-//	}
-	
-	public VaxImmunization getVaxImmunization() {
-		return vaxImmunization;
+	public List<VaxImmunization> getVaxImmunizations() {
+		return vaxImmunizations;
 	}
 
-	public void setVaxImmunization(VaxImmunization vaxImmunization) {
-		this.vaxImmunization = vaxImmunization;
+	public void setVaxImmunizations(List<VaxImmunization> vaxImmunizations) {
+		this.vaxImmunizations = vaxImmunizations;
+		for (VaxImmunization v : vaxImmunizations) v.setUser(this);
 	}
+	
 }

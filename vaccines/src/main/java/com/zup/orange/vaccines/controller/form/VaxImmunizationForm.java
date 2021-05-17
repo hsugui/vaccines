@@ -18,29 +18,24 @@ public class VaxImmunizationForm {
 	public LocalDate getVaccinationDate() {
 		return vaccinationDate;
 	}
-	
 	public void setVaccinationDate(LocalDate vaccinationDate) {
 		this.vaccinationDate = vaccinationDate;
 	}
-
 	public User getUser() {
 		return user;
 	}
-
 	public void setUser(User user) {
 		this.user = user;
 	}
-
 	public Vaccine getVaccine() {
 		return vaccine;
 	}
-
 	public void setVaccine(Vaccine vaccine) {
 		this.vaccine = vaccine;
 	}
 
 	public VaxImmunization convert() {
-		return new VaxImmunization(vaccinationDate, user, vaccine);
+		return new VaxImmunization(user.getCpf(), vaccine.getVaccineName(), vaccinationDate);
 	}
 	
 }
