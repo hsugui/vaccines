@@ -27,12 +27,12 @@ public class VaxImmunization {
 	private LocalDate vaccinationDate;
 	
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_cpf")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JoinColumn(name = "user_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) //prestar atenção nisso
 	private User user;
     
     @OneToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "vaccine_name")
+    @JoinColumn(name = "vaccine_id")
     private Vaccine vaccine;
 
 	public VaxImmunization() {
