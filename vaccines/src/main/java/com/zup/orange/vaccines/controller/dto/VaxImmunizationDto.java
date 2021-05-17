@@ -21,22 +21,14 @@ public class VaxImmunizationDto {
 		this.vaccinationDate = vaxImmunization.getVaccinationDate();
 		this.user = vaxImmunization.getUser();
 		this.vaccine = vaxImmunization.getVaccine();
-	}
-	
+	}	
+
 	public String getUserCpf() {
 		return user.getCpf();
 	}
 	
 	public void setUserCpf(String userCpf) {
 		userCpf = user.getCpf();
-	}
-
-	public String getVaccineName() {
-		return vaccine.getVaccineName();
-	}
-
-	public void setVaccineName(String vaccineName) {
-		vaccineName = vaccine.getVaccineName();
 	}
 	
 	public Long getId() {
