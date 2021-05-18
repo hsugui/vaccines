@@ -58,11 +58,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUser(String cpf) {
 		Optional<User> user = userRepository.findUserByCpf(cpf);
-		if (user.isPresent()) {
-			Long userId = user.get().getId();
-			userRepository.deleteById(userId);
+		if (!user.isPresent()) {
+			throw new IllegalStateException("user with cpf " + cpf + " does not exist");
 		}
-		throw new IllegalStateException("user with cpf " + cpf + " does not exist");
+		Long userId = user.get().getId();
+		userRepository.deleteById(userId);
 	}
 
 }
