@@ -38,6 +38,11 @@ public class VaccineController {
 		return vaccineServiceImpl.getVaccines();
 	}
 	
+	@GetMapping("/{id}")
+	public Vaccine getVaccineById(@PathVariable Long id) {
+		return vaccineServiceImpl.getVaccineById(id);
+	}
+	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Vaccine registerVaccine(@RequestBody @Valid VaccineForm vaccineForm) {

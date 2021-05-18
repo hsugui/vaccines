@@ -24,17 +24,29 @@ public class VaccineServiceImpl implements VaccineService {
 		this.vaccineRepository = vaccineRepository;
 	}
 	
+	@Override
 	public List<VaccineDto> getVaccines() {
 		List<Vaccine> vaccines = vaccineRepository.findAll();
 		return VaccineDto.convert(vaccines);
 	}
+	
+	@Override
+	public Vaccine getVaccineById(Long id) {
+		Optional<Vaccine> vaccine = vaccineRepository.findById(id);
+		if (vaccine.isPresent()) {
+			return vaccine.get();
+		}
+		throw new IllegalStateException("vaccine with id " + id + " does not exist");
+	}
 
+	@Override
 	@Transactional
 	public Vaccine addNewVax(VaccineForm vaccineForm) {
 		Vaccine vaccine = vaccineForm.convert();
 		return vaccineRepository.save(vaccine);
 	}
 	
+	@Override
 	@Transactional
 	public Vaccine updateVaccine(Long id, VaccineUpdateForm form) {
 		Optional<Vaccine> vaccineOptional = vaccineRepository.findById(id);
@@ -44,6 +56,7 @@ public class VaccineServiceImpl implements VaccineService {
 		throw new IllegalStateException("vaccine with id " + id + " does not exist");
 	}
 
+	@Override
 	public void deleteVaccine(Long id) {
 		boolean exists = vaccineRepository.existsById(id);
 		if (!exists) {

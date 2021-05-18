@@ -38,6 +38,11 @@ public class UserController {
 		return userServiceImpl.getUsers();
 	}
 	
+	@GetMapping("/{id}")
+	public User getUserById(@PathVariable Long id) {
+		return userServiceImpl.getUserById(id);
+	}
+	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public User registerUser(@RequestBody @Valid UserForm userForm) {

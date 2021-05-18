@@ -1,0 +1,32 @@
+JSON POST
+
+user-vaccination
+
+{
+  "user": {
+    "id": ""
+    },
+  "vaccine": {
+      "id": ""
+  	},
+   "vaccinationDate": "17/05/2021"
+}
+
+-----
+
+user
+
+{
+  "name": "Charlinho",
+  "email": "charlinho@sampa.com",
+  "cpf": "87204544064",
+  "birthDate": "08/08/1986"
+}
+
+-----
+
+vaccine
+
+{
+  "vaccineName": "Influenza"
+}

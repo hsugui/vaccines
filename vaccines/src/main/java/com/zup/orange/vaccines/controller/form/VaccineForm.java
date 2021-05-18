@@ -1,5 +1,7 @@
 package com.zup.orange.vaccines.controller.form;
 
+import java.util.List;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +13,15 @@ public class VaccineForm {
 	@NotEmpty @NotNull
 	private String vaccineName;
 	
-	private VaxImmunization vaxImmunization;
+	private List<VaxImmunization> vaxImmunizations;
+
+	public List<VaxImmunization> getVaxImmunizations() {
+		return vaxImmunizations;
+	}
+
+	public void setVaxImmunizations(List<VaxImmunization> vaxImmunizations) {
+		this.vaxImmunizations = vaxImmunizations;
+	}
 
 	public String getVaccineName() {
 		return vaccineName;
@@ -22,7 +32,7 @@ public class VaccineForm {
 	}
 
 	public Vaccine convert() {
-		return new Vaccine(vaccineName, vaxImmunization);
+		return new Vaccine(vaccineName, vaxImmunizations);
 	}
 
 }

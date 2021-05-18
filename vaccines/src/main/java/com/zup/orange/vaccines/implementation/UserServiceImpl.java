@@ -24,17 +24,29 @@ public class UserServiceImpl implements UserService {
 		this.userRepository = userRepository;
 	}
 	
+	@Override
 	public List<UserDto> getUsers() {
 		List<User> users = userRepository.findAll();
 		return UserDto.convert(users);
 	}
+	
+	@Override
+	public User getUserById(Long id) {
+		Optional<User> user = userRepository.findById(id);
+		if (user.isPresent()) {
+			return user.get();
+		}
+		throw new IllegalStateException("user with id " + id + " does not exist");
+	}
 
+	@Override
 	public User addNewUser(UserForm userForm) {
 		User user = userForm.convert();
 		return userRepository.save(user);
 	}
 
 	@Transactional
+	@Override
 	public User updateUser(Long id, UserUpdateForm form) {
 		Optional<User> userOptional = userRepository.findById(id);
 		if (userOptional.isPresent())	{
@@ -43,6 +55,7 @@ public class UserServiceImpl implements UserService {
 		throw new IllegalStateException("user with id " + id + " does not exist");
 	}
 
+	@Override
 	public void deleteUser(Long id) {
 		boolean exists = userRepository.existsById(id);
 		if (!exists) {
@@ -50,4 +63,5 @@ public class UserServiceImpl implements UserService {
 		}
 		userRepository.deleteById(id);
 	}
+
 }

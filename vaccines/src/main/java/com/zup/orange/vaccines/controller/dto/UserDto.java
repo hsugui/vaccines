@@ -27,14 +27,6 @@ public class UserDto {
 		this.vaxImmunizations = user.getVaxImmunizations();
 	}
 
-	public List<VaxImmunization> getVaxImmunization() {
-		return vaxImmunizations;
-	}
-
-	public void setVaxImmunization(List<VaxImmunization> vaxImmunizations) {
-		this.vaxImmunizations = vaxImmunizations;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -76,6 +68,14 @@ public class UserDto {
 		this.birthDate = birthDate;
 	}
 
+	public List<VaxImmunization> getVaxImmunization() {
+		return vaxImmunizations;
+	}
+
+	public void setVaxImmunization(List<VaxImmunization> vaxImmunizations) {
+		this.vaxImmunizations = vaxImmunizations;
+	}
+	
 	public static List<UserDto> convert(List<User> users) {
 		return users.stream().map(UserDto::new).collect(Collectors.toList());
 	}

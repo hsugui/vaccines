@@ -10,6 +10,8 @@ import com.zup.orange.vaccines.model.User;
 public interface UserService {
 	
 	public List<UserDto> getUsers();
+	
+	public User getUserById(Long id);
 
 	public User addNewUser(UserForm userForm);
 

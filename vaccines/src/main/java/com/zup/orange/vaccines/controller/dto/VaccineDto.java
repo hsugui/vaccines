@@ -10,12 +10,13 @@ public class VaccineDto {
 
 	private Long id;
 	private String vaccineName;
-	private VaxImmunization vaxImmunization;
+	
+	private List<VaxImmunization> vaxImmunizations;
 
 	public VaccineDto(Vaccine vaccine) {
 		this.id = vaccine.getId();
 		this.vaccineName = vaccine.getVaccineName();
-		this.vaxImmunization = vaccine.getVaxImmunization();
+		this.vaxImmunizations = vaccine.getVaxImmunizations();
 	}
 
 	public Long getId() {
@@ -34,12 +35,12 @@ public class VaccineDto {
 		this.vaccineName = vaccineName;
 	}
 
-	public VaxImmunization getVaxImmunization() {
-		return vaxImmunization;
+	public List<VaxImmunization> getVaxImmunization() {
+		return vaxImmunizations;
 	}
 
-	public void setVaxImmunization(VaxImmunization vaxImmunization) {
-		this.vaxImmunization = vaxImmunization;
+	public void setVaxImmunization(List<VaxImmunization> vaxImmunizations) {
+		this.vaxImmunizations = vaxImmunizations;
 	}
 
 	public static List<VaccineDto> convert(List<Vaccine> vaccines) {

@@ -1,12 +1,14 @@
 package com.zup.orange.vaccines.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -23,15 +25,15 @@ public class Vaccine {
 	private String vaccineName;
 	
 	@JsonIgnoreProperties("vaccine")
-	@OneToOne(mappedBy = "vaccine", cascade = CascadeType.ALL)
-	private VaxImmunization vaxImmunization;
+	@OneToMany(mappedBy = "vaccine", cascade = CascadeType.ALL)
+	private List<VaxImmunization> vaxImmunizations;
 
 	public Vaccine() {
 	}
 
-	public Vaccine(String vaccineName, VaxImmunization vaxImmunization) {
+	public Vaccine(String vaccineName, List<VaxImmunization> vaxImmunizations) {
 		this.vaccineName = vaccineName;
-		this.vaxImmunization = vaxImmunization;
+		this.vaxImmunizations = vaxImmunizations;
 	}
 
 	@Override
@@ -75,12 +77,13 @@ public class Vaccine {
 		this.vaccineName = vaccineName;
 	}
 
-	public VaxImmunization getVaxImmunization() {
-		return vaxImmunization;
+	public List<VaxImmunization> getVaxImmunizations() {
+		return vaxImmunizations;
 	}
 
-	public void setVaxImmunization(VaxImmunization vaxImmunization) {
-		this.vaxImmunization = vaxImmunization;
+	public void setVaxImmunizations(List<VaxImmunization> vaxImmunizations) {
+		this.vaxImmunizations = vaxImmunizations;
+		for (VaxImmunization v : vaxImmunizations) v.setVaccine(this);
 	}
 
 }

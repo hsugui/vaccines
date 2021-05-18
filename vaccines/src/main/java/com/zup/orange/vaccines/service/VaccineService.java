@@ -10,6 +10,8 @@ import com.zup.orange.vaccines.model.Vaccine;
 public interface VaccineService {
 
 	public List<VaccineDto> getVaccines();
+	
+	public Vaccine getVaccineById(Long id);
 
 	public Vaccine addNewVax(VaccineForm vaccineForm);
 

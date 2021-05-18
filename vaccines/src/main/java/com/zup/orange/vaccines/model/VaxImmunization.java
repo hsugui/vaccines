@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -31,8 +30,9 @@ public class VaxImmunization {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private User user;
     
-    @OneToOne(cascade = CascadeType.MERGE, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "vaccine_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Vaccine vaccine;
     
 
