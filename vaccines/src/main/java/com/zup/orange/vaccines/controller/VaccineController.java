@@ -23,7 +23,7 @@ import com.zup.orange.vaccines.implementation.VaccineServiceImpl;
 import com.zup.orange.vaccines.model.Vaccine;
 
 @RestController
-@RequestMapping("/vaccine")
+@RequestMapping("api/v1/vaccines")
 public class VaccineController {
 
 	private final VaccineServiceImpl vaccineServiceImpl;
