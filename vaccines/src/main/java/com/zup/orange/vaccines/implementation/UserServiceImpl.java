@@ -31,12 +31,12 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User getUserById(Long id) {
-		Optional<User> user = userRepository.findById(id);
+	public User getUserByCpf(String cpf) {
+		Optional<User> user = userRepository.findUserByCpf(cpf);
 		if (user.isPresent()) {
 			return user.get();
 		}
-		throw new IllegalStateException("user with id " + id + " does not exist");
+		throw new IllegalStateException("user with cpf " + cpf + " does not exist");
 	}
 
 	@Override
@@ -47,21 +47,22 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public User updateUser(Long id, UserUpdateForm form) {
-		Optional<User> userOptional = userRepository.findById(id);
+	public User updateUser(String cpf, UserUpdateForm form) {
+		Optional<User> userOptional = userRepository.findUserByCpf(cpf);
 		if (userOptional.isPresent())	{
-			return form.update(id, userRepository);
+			return form.update(cpf, userRepository);
 		}
-		throw new IllegalStateException("user with id " + id + " does not exist");
+		throw new IllegalStateException("user with id " + cpf + " does not exist");
 	}
 
 	@Override
-	public void deleteUser(Long id) {
-		boolean exists = userRepository.existsById(id);
-		if (!exists) {
-			throw new IllegalStateException("user with id " + id + " does not exist");
+	public void deleteUser(String cpf) {
+		Optional<User> user = userRepository.findUserByCpf(cpf);
+		if (user.isPresent()) {
+			Long userId = user.get().getId();
+			userRepository.deleteById(userId);
 		}
-		userRepository.deleteById(id);
+		throw new IllegalStateException("user with cpf " + cpf + " does not exist");
 	}
 
 }

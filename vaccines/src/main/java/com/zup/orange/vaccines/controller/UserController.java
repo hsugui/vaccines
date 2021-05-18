@@ -38,9 +38,9 @@ public class UserController {
 		return userServiceImpl.getUsers();
 	}
 	
-	@GetMapping("/{id}")
-	public User getUserById(@PathVariable Long id) {
-		return userServiceImpl.getUserById(id);
+	@GetMapping("/{cpf}")
+	public User getUserByCpf(@PathVariable String cpf) {
+		return userServiceImpl.getUserByCpf(cpf);
 	}
 	
 	@PostMapping
@@ -49,14 +49,14 @@ public class UserController {
 		return userServiceImpl.addNewUser(userForm);
 	}
 	
-	@PutMapping("/{id}")
-	public User updateUser(@PathVariable Long id, @RequestBody @Valid UserUpdateForm userForm) {
-		return userServiceImpl.updateUser(id, userForm);
+	@PutMapping("/{cpf}")
+	public User updateUser(@PathVariable String cpf, @RequestBody @Valid UserUpdateForm userForm) {
+		return userServiceImpl.updateUser(cpf, userForm);
 	}
 
-	@DeleteMapping("/{id}")
-	public void deleteUser(@PathVariable("id") Long id) {
-		userServiceImpl.deleteUser(id);
+	@DeleteMapping("/{cpf}")
+	public void deleteUser(@PathVariable String cpf) {
+		userServiceImpl.deleteUser(cpf);
 	}
 	
 }

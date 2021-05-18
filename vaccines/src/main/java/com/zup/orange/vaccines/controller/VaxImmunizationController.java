@@ -55,7 +55,7 @@ public class VaxImmunizationController {
 	}
 
 	@DeleteMapping("/{id}")
-	public void deleteVaxImmu(@PathVariable Long id) { //("id")
+	public void deleteVaxImmu(@PathVariable Long id) {
 		vaxImmunizationServiceImpl.deleteVaxImmunization(id);
 	}
 	

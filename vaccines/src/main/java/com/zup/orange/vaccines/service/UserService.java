@@ -11,12 +11,12 @@ public interface UserService {
 	
 	public List<UserDto> getUsers();
 	
-	public User getUserById(Long id);
+	public User getUserByCpf(String cpf);
 
 	public User addNewUser(UserForm userForm);
 
-	public User updateUser(Long id, UserUpdateForm form);
+	public User updateUser(String cpf, UserUpdateForm form);
 
-	public void deleteUser(Long id);
+	public void deleteUser(String cpf);
 
 }

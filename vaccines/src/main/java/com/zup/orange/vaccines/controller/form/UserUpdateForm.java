@@ -65,5 +65,16 @@ public class UserUpdateForm {
 		
 		return user;
 	}
+	
+	public User update(String cpf, UserRepository userRepository) {
+		User user = userRepository.findUserByCpf(cpf).get();
+		
+		user.setName(this.name);
+		user.setEmail(this.email);
+		user.setCpf(this.cpf);
+		user.setBirthDate(this.birthDate);
+		
+		return user;
+	}
 
 }
