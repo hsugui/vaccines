@@ -3,6 +3,7 @@ package com.zup.orange.vaccines.implementation;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.assertj.core.api.AssertionsForClassTypes;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -65,9 +66,20 @@ public class VaccineServiceImplTest {
 	}
 
 	@Test
-	@Disabled
-	void testDeleteVaccine() {
-		fail("Not yet implemented");
+	void canDeleteVaccineByItsId() {
+		Vaccine vaccine = new Vaccine("VAC1");
+		vaccine.setId(1L);
+		underTest.deleteVaccine(vaccine.getId());
+		Mockito.verify(vaccineRepository, Mockito.times(1)).delete(vaccine);
+		
+//		Long id = 1L;
+//		Vaccine vaccine = new Vaccine();
+//		vaccine.setId(id);
+//		boolean existsBeforeDelete = vaccineRepository.findById(id).isPresent();
+//		vaccineRepository.deleteById(id);
+//		boolean dontExistAfterDelete = vaccineRepository.findById(id).isPresent();
+//		
+//		Assertions.assertTrue(existsBeforeDelete);
+//		Assertions.assertFalse(dontExistAfterDelete);
 	}
-
 }
