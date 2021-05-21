@@ -15,6 +15,12 @@ public class VaxImmunizationForm {
 	private User user;
 	private Vaccine vaccine;
 	
+	public VaxImmunizationForm(LocalDate vaccinationDate, User user, Vaccine vaccine) {
+		this.vaccinationDate = vaccinationDate;
+		this.user = user;
+		this.vaccine = vaccine;
+	}
+	
 	public LocalDate getVaccinationDate() {
 		return vaccinationDate;
 	}

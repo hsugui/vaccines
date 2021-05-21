@@ -30,6 +30,10 @@ public class Vaccine {
 
 	public Vaccine() {
 	}
+	
+	public Vaccine(String vaccineName) {
+		this.vaccineName = vaccineName;
+	}
 
 	public Vaccine(String vaccineName, List<VaxImmunization> vaxImmunizations) {
 		this.vaccineName = vaccineName;

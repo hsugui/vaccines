@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,6 +58,11 @@ public class VaccineController {
 	@DeleteMapping("/{id}")
 	public void deleteVaccine(@PathVariable("id") Long id) {
 		vaccineServiceImpl.deleteVaccine(id);
+	}
+	
+	@GetMapping("/paging")
+	public List<Vaccine> getVaccinesPaginated(Pageable pageable) {
+		return vaccineServiceImpl.findPaginated(pageable);
 	}
 	
 }

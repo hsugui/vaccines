@@ -15,6 +15,10 @@ public class VaccineForm {
 	
 	private List<VaxImmunization> vaxImmunizations;
 
+	public VaccineForm(String vaccineName) {
+		this.vaccineName = vaccineName;
+	}
+
 	public List<VaxImmunization> getVaxImmunizations() {
 		return vaxImmunizations;
 	}

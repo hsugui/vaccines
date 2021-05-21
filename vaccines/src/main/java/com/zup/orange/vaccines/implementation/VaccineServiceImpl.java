@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -63,6 +65,12 @@ public class VaccineServiceImpl implements VaccineService {
 			throw new IllegalStateException("vaccine with id " + id + " does not exist");
 		}
 		vaccineRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Vaccine> findPaginated(Pageable pageable) {
+		Page<Vaccine> page = vaccineRepository.findAll(pageable);
+		return page.getContent();
 	}
 	
 }

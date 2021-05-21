@@ -26,6 +26,13 @@ public class UserForm {
 	
 	private List<VaxImmunization> vaxImmunizations;
 
+	public UserForm(String name, String email, String cpf, LocalDate birthDate) {
+		this.name = name;
+		this.email = email;
+		this.cpf = cpf;
+		this.birthDate = birthDate;
+	}
+
 	public List<VaxImmunization> getVaxImmunizations() {
 		return vaxImmunizations;
 	}

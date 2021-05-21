@@ -19,6 +19,10 @@ public class VaccineDto {
 		this.vaxImmunizations = vaccine.getVaxImmunizations();
 	}
 
+	public VaccineDto(String vaccineName) {
+		this.vaccineName = vaccineName;
+	}
+
 	public Long getId() {
 		return id;
 	}
