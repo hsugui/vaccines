@@ -3,6 +3,7 @@ package com.zup.orange.vaccines.implementation;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +32,7 @@ public class UserServiceImplTest {
 	}
 
 	@Test
-	void canGetAllUsers() {
+	void shouldGetAllUsers() {
 		// when
 		underTest.getUsers();
 		// then
@@ -39,13 +40,23 @@ public class UserServiceImplTest {
 	}
 
 	@Test
-	@Disabled
-	void testGetUserByCpf() {
-		fail("Not yet implemented");
+	void shouldGetAUserByCpf() {
+		// given
+		User expectedUser = new User();
+		expectedUser.setId(1L);
+		expectedUser.setBirthDate(LocalDate.now().minusYears(21));
+		expectedUser.setCpf("29539979030");
+		expectedUser.setEmail("email@test.com");
+		expectedUser.setName("User Name");
+		// when
+		Mockito.when(userRepository.findUserByCpf("29539979030")).thenReturn(Optional.of(expectedUser));
+		User actualUser = underTest.getUserByCpf("29539979030");
+		// then
+		AssertionsForClassTypes.assertThat(actualUser.getCpf()).isEqualTo(expectedUser.getCpf());
 	}
 
 	@Test
-	void canAddNewUser() {
+	void shouldAddANewUser() {
 		// given
 		UserForm userForm = new UserForm("User", "user@email.com", "45466394068", LocalDate.now().minusYears(21));
 		User user = userForm.convert();
@@ -68,7 +79,7 @@ public class UserServiceImplTest {
 
 	@Test
 	@Disabled
-	void testDeleteUser() {
+	void shouldDeleteAnUserByCpf() {
 		fail("Not yet implemented");
 	}
 

@@ -3,6 +3,7 @@ package com.zup.orange.vaccines.implementation;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +34,7 @@ public class VaxImmunizationServiceImplTest {
 	}
 
 	@Test
-	void canListAllImmunizations() {
+	void shouldgetAllImmunizations() {
 		// when
 		underTest.listAllImmunizations();
 		// then
@@ -41,13 +42,19 @@ public class VaxImmunizationServiceImplTest {
 	}
 
 	@Test
-	@Disabled
-	void testGetImmunizationById() {
-		fail("Not yet implemented");
+	void shouldGetAnImmunizationByItsId() {
+		// given
+		VaxImmunization expectedVaxImmu = new VaxImmunization();
+		expectedVaxImmu.setId(1L);
+		// when
+		Mockito.when(vaxImmunizationRepository.findById(1L)).thenReturn(Optional.of(expectedVaxImmu));
+		VaxImmunization actualVaxImmu = underTest.getImmunizationById(1L);
+		// then
+		AssertionsForClassTypes.assertThat(actualVaxImmu.getId()).isEqualTo(expectedVaxImmu.getId());
 	}
 
 	@Test
-	void canAddNewImmunization() {
+	void shouldAddANewImmunization() {
 		// given
 		VaxImmunizationForm vaxImmuForm = new VaxImmunizationForm(LocalDate.now(), new User(), new Vaccine());
 		VaxImmunization vaxImmunization = vaxImmuForm.convert();
@@ -70,7 +77,7 @@ public class VaxImmunizationServiceImplTest {
 
 	@Test
 	@Disabled
-	void testDeleteVaxImmunization() {
+	void shouldDeleteAnImmunization() {
 		fail("Not yet implemented");
 	}
 
