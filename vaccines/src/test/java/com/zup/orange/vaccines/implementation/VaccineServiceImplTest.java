@@ -3,7 +3,6 @@ package com.zup.orange.vaccines.implementation;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.assertj.core.api.AssertionsForClassTypes;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -26,7 +25,7 @@ public class VaccineServiceImplTest {
 	
 	@BeforeEach
 	void setUp() {
-		underTest = new VaccineServiceImpl(vaccineRepository);
+		this.underTest = new VaccineServiceImpl(vaccineRepository);
 	}
 
 	@Test
@@ -36,11 +35,22 @@ public class VaccineServiceImplTest {
 		// then
 		Mockito.verify(vaccineRepository).findAll();
 	}
+	
+	private Vaccine vaccineForTest() {
+		Vaccine vaccine = new Vaccine("VAC1");
+		vaccine.setId(1L);
+		return vaccine;
+	}
 
 	@Test
-	@Disabled
-	void testGetVaccineById() {
-		fail("Not yet implemented");
+	void canGetAVaccineByItsId() {
+		Vaccine vaccine = vaccineForTest();
+		
+		//Mockito.when(vaccineRepository.findById(vaccine.getId())).
+		
+		//underTest.getVaccineById(vaccine.getId());
+		
+		Mockito.verify(vaccineRepository).findById(vaccine.getId());
 	}
 
 	@Test
@@ -65,12 +75,21 @@ public class VaccineServiceImplTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	void canDeleteVaccineByItsId() {
-		Vaccine vaccine = new Vaccine("VAC1");
-		vaccine.setId(1L);
-		underTest.deleteVaccine(vaccine.getId());
-		Mockito.verify(vaccineRepository, Mockito.times(1)).delete(vaccine);
+//	@Test
+//	@Disabled
+//	void canDeleteVaccineByItsId() {
+//		List<Vaccine> vaccines = vaccinesListForTest();
+//		Long id = vaccines.get(0).getId();
+//		
+//		//Mockito.when(vaccineRepository.deleteById(id));
+//		
+//		underTest.deleteVaccine(vaccines.get(0).getId());
+//		Mockito.verify(vaccineRepository, Mockito.times(1)).delete(vaccines.get(0));
+		
+//		Vaccine vaccine = new Vaccine("VAC1");
+//		vaccine.setId(1L);
+//		underTest.deleteVaccine(vaccine.getId());
+//		Mockito.verify(vaccineRepository, Mockito.times(1)).delete(vaccine);
 		
 //		Long id = 1L;
 //		Vaccine vaccine = new Vaccine();
@@ -81,5 +100,7 @@ public class VaccineServiceImplTest {
 //		
 //		Assertions.assertTrue(existsBeforeDelete);
 //		Assertions.assertFalse(dontExistAfterDelete);
-	}
+//	}
+	
+
 }

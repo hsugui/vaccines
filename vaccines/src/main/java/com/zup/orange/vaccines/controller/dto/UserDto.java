@@ -16,7 +16,10 @@ public class UserDto {
 	private String cpf;
 	private LocalDate birthDate;
 	
-	private List<VaxImmunization> vaxImmunizations;
+	//private List<VaxImmunization> vaxImmunizations;
+	
+	public UserDto() {
+	}
 	
 	public UserDto(User user) {
 		this.id = user.getId();
@@ -24,7 +27,7 @@ public class UserDto {
 		this.email = user.getEmail();
 		this.cpf = user.getCpf();
 		this.birthDate = user.getBirthDate();
-		this.vaxImmunizations = user.getVaxImmunizations();
+		//this.vaxImmunizations = user.getVaxImmunizations();
 	}
 
 	public Long getId() {
@@ -68,13 +71,13 @@ public class UserDto {
 		this.birthDate = birthDate;
 	}
 
-	public List<VaxImmunization> getVaxImmunization() {
-		return vaxImmunizations;
-	}
-
-	public void setVaxImmunization(List<VaxImmunization> vaxImmunizations) {
-		this.vaxImmunizations = vaxImmunizations;
-	}
+//	public List<VaxImmunization> getVaxImmunization() {
+//		return vaxImmunizations;
+//	}
+//
+//	public void setVaxImmunization(List<VaxImmunization> vaxImmunizations) {
+//		this.vaxImmunizations = vaxImmunizations;
+//	}
 	
 	public static List<UserDto> convert(List<User> users) {
 		return users.stream().map(UserDto::new).collect(Collectors.toList());

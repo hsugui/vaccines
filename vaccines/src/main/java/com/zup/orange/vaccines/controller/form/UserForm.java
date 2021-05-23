@@ -24,7 +24,10 @@ public class UserForm {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate birthDate;
 	
-	private List<VaxImmunization> vaxImmunizations;
+	//private List<VaxImmunization> vaxImmunizations;
+	
+	public UserForm() {
+	}
 
 	public UserForm(String name, String email, String cpf, LocalDate birthDate) {
 		this.name = name;
@@ -33,13 +36,13 @@ public class UserForm {
 		this.birthDate = birthDate;
 	}
 
-	public List<VaxImmunization> getVaxImmunizations() {
-		return vaxImmunizations;
-	}
-
-	public void setVaxImmunizations(List<VaxImmunization> vaxImmunizations) {
-		this.vaxImmunizations = vaxImmunizations;
-	}
+//	public List<VaxImmunization> getVaxImmunizations() {
+//		return vaxImmunizations;
+//	}
+//
+//	public void setVaxImmunizations(List<VaxImmunization> vaxImmunizations) {
+//		this.vaxImmunizations = vaxImmunizations;
+//	}
 
 	public String getName() {
 		return name;
@@ -74,7 +77,7 @@ public class UserForm {
 	}
 
 	public User convert() {
-		return new User(name, email, cpf, birthDate, vaxImmunizations);
+		return new User(name, email, cpf, birthDate);
 	}
 
 }

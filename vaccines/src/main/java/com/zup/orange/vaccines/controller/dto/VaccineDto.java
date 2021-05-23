@@ -11,12 +11,15 @@ public class VaccineDto {
 	private Long id;
 	private String vaccineName;
 	
-	private List<VaxImmunization> vaxImmunizations;
+	//private List<VaxImmunization> vaxImmunizations;
+	
+	public VaccineDto() {
+	}
 
 	public VaccineDto(Vaccine vaccine) {
 		this.id = vaccine.getId();
 		this.vaccineName = vaccine.getVaccineName();
-		this.vaxImmunizations = vaccine.getVaxImmunizations();
+		//this.vaxImmunizations = vaccine.getVaxImmunizations();
 	}
 
 	public VaccineDto(String vaccineName) {
@@ -39,13 +42,13 @@ public class VaccineDto {
 		this.vaccineName = vaccineName;
 	}
 
-	public List<VaxImmunization> getVaxImmunization() {
-		return vaxImmunizations;
-	}
-
-	public void setVaxImmunization(List<VaxImmunization> vaxImmunizations) {
-		this.vaxImmunizations = vaxImmunizations;
-	}
+//	public List<VaxImmunization> getVaxImmunization() {
+//		return vaxImmunizations;
+//	}
+//
+//	public void setVaxImmunization(List<VaxImmunization> vaxImmunizations) {
+//		this.vaxImmunizations = vaxImmunizations;
+//	}
 
 	public static List<VaccineDto> convert(List<Vaccine> vaccines) {
 		return vaccines.stream().map(VaccineDto::new).collect(Collectors.toList());

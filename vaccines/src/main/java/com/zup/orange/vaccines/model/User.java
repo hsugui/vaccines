@@ -44,12 +44,11 @@ public class User {
 	public User() {
 	}
 
-	public User(String name, String email, String cpf, LocalDate birthDate, List<VaxImmunization> vaxImmunizations) {
+	public User(String name, String email, String cpf, LocalDate birthDate) {
 		this.name = name;
 		this.email = email;
 		this.cpf = cpf;
 		this.birthDate = birthDate;
-		this.vaxImmunizations = vaxImmunizations;
 	}
 
 	@Override

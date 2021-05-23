@@ -16,6 +16,9 @@ public class VaxImmunizationDto {
 	private User user;
 	private Vaccine vaccine;
 	
+	public VaxImmunizationDto() {
+	}
+	
 	public VaxImmunizationDto(VaxImmunization vaxImmunization) {
 		this.id = vaxImmunization.getId();
 		this.vaccinationDate = vaxImmunization.getVaccinationDate();
