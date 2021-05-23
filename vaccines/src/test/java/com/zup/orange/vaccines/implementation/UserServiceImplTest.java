@@ -78,9 +78,16 @@ public class UserServiceImplTest {
 	}
 
 	@Test
-	@Disabled
 	void shouldDeleteAnUserByCpf() {
-		fail("Not yet implemented");
+		User user = new User();
+		user.setCpf("29539979030");
+		user.setId(1L);
+		
+		Mockito.when(userRepository.findUserByCpf("29539979030")).thenReturn(Optional.of(user));
+		underTest.getUserByCpf("29539979030");
+		userRepository.deleteById(user.getId());
+		
+		Mockito.verify(userRepository, Mockito.times(1)).deleteById(1L);
 	}
 
 }

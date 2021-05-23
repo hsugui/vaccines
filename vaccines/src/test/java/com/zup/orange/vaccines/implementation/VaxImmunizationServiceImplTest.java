@@ -76,9 +76,15 @@ public class VaxImmunizationServiceImplTest {
 	}
 
 	@Test
-	@Disabled
-	void shouldDeleteAnImmunization() {
-		fail("Not yet implemented");
+	void shouldDeleteAnImmunizationByItsId() {
+		VaxImmunization vaxImmu = new VaxImmunization();
+		vaxImmu.setId(1L);
+		
+		Mockito.when(vaxImmunizationRepository.findById(1L)).thenReturn(Optional.of(vaxImmu));
+		underTest.getImmunizationById(1L);
+		vaxImmunizationRepository.deleteById(vaxImmu.getId());
+		
+		Mockito.verify(vaxImmunizationRepository, Mockito.times(1)).deleteById(1L);
 	}
 
 }
